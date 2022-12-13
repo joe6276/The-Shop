@@ -1,0 +1,19 @@
+﻿
+
+  <div class="card col-3 mx-auto" style="height:250px;">
+          <img class="card-img-top h-50 w-100 " src=@Empolyees.Image alt="Card image cap">
+        <div class="card-body">
+                <h5 class="card-title">@Empolyees.Name</h5>
+                <p class="card-text">@Empolyees.MaritalStatus</p>
+                <button class ="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                @onclick="@(async ()=> await ShowEmployeeQuickView.InvokeAsync(Empolyees))"> More Details</button>
+                    
+                @*<a href ="@($"employee/{Empolyees.EmployeeID}")"> Show More..</a>*@
+               @* <button @onclick "ShowFullDetails(Empolyees)">Full Details</button>*@
+
+                  <button class="btn btn-primary "  @onclick="(()=>ShowFullDetails(Empolyees))">Full Details</button>
+
+                  <a class="btn btn-outline-primary" href ="@($"/employee/edit/{@Empolyees.Id}")">Edit Employee</a>
+   </div>
+   </div>
+    

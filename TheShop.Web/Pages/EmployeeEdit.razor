@@ -1,0 +1,172 @@
+﻿@page "/employee/edit"
+@page "/employee/edit/{EmployeeId}"
+@using TheShop.Models
+
+
+<h1 class ="page-title">Details For @Employee.Name </h1>
+
+@if (!Saved){
+<EditForm  Model ="@Employee" OnInvalidSubmit ="@HandleInvalidSubmit" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+<div class="row mb-3">
+
+    <label for="Name" class="col-form-label col-md-3"> Enter Your Name </label>
+    <div class="col-md-8">
+        <InputText  id ="Name" class="form-control col-md-8" @bind-Value ="@Employee.Name" placeholder="Enter a Name"/>
+    </div>
+
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Address" class="col-form-label col-md-3"> Enter Your Address </label>
+    <div class="col-md-8">
+        <InputText  id ="Address" class="form-control col-md-8" @bind-Value ="@Employee.Address" placeholder="Enter an Address"/>
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+    <label for="City" class="col-form-label col-md-3"> Enter Your City </label>
+    <div class="col-md-8">
+        <InputText  id ="City" class="form-control col-md-8" @bind-Value ="@Employee.City" placeholder="Enter a City"/>
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+    <label for="Email" class="col-form-label col-md-3"> Enter Your Email </label>
+    <div class="col-md-8">
+        <InputText  id ="Email" class="form-control col-md-8" @bind-Value ="@Employee.Email" placeholder="Enter a Email"/>
+    </div>
+
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Image" class="col-form-label col-md-3"> Enter Your Image </label>
+    <div class="col-md-8">
+        <InputText  id ="Image" class="form-control col-md-8" @bind-Value ="@Employee.Image"/>
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+    <label for="Longitude" class="col-form-label col-md-3"> Enter Your Longitude </label>
+    <div class="col-md-8">
+        <InputNumber  id ="Longitude" class="form-control col-md-8" @bind-Value ="@Employee.Longitude" placeholder="Enter a Longitude"/>
+    </div>
+    <ValidationMessage For="@(()=> Employee.Longitude)" class ="offset-md-3 col md-8"/>
+</div>
+
+<div class="row mb-3">
+
+    <label for="Latitude" class="col-form-label col-md-3"> Enter Your Latitude </label>
+    <div class="col-md-8">
+        <InputNumber  id ="Latitude" class="form-control col-md-8" @bind-Value ="@Employee.Latitude" placeholder="Enter a Latitude"/>
+    </div>
+      <ValidationMessage For="@(()=> Employee.Latitude)" class ="offset-md-3 col md-8"/>
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Date" class="col-form-label col-md-3"> Enter Birth Date </label>
+    <div class="col-md-8">
+        <InputDate  id ="Date" class="form-control col-md-8" @bind-Value ="@Employee.CreatedDate" placeholder="Enter  Date"/>
+    </div>
+
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Date" class="col-form-label col-md-3"> Select Country </label>
+    <div class="col-md-8">
+        <InputSelect  id ="Country" class="form-control col-md-8" @bind-Value ="@Employee.CountryId" placeholder="Enter  Date">
+
+            @foreach(var country in Countries)
+                {
+                    <option value="@country.Id"> @country.Name</option>
+                }
+
+        </InputSelect>
+    </div>
+
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Date" class="col-form-label col-md-3"> Select Category </label>
+    <div class="col-md-8">
+        <InputSelect  id ="Categories" class="form-control col-md-8" @bind-Value ="@Employee.JobCategoryId" placeholder="Enter  Date">
+
+            @foreach(var category in Categories)
+                {
+                    <option value="@category.Id"> @category.Name</option>
+                }
+
+        </InputSelect>
+    </div>
+
+</div>
+
+
+<div class="row mb-3">
+
+    <label for="Date" class="col-form-label col-md-3"> Select Marital Status </label>
+    <div class="col-md-8">
+        <InputSelect  id ="Categories" class="form-control col-md-8" @bind-Value ="@Employee.MaritalStatus" placeholder="Enter  Date">
+
+                    <option value="@(MaritalStatus.Single)">Single</option>
+                    <option value="@(MaritalStatus.Married)">Married</option>
+                    <option value="@(MaritalStatus.Divorced)">Divorced</option>
+
+        </InputSelect>
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+    <label for="Date" class="col-form-label col-md-3"> Select Gender </label>
+    <div class="col-md-8">
+        <InputSelect  id ="Categories" class="form-control col-md-8" @bind-Value ="@Employee.gender" placeholder="Enter  Date">
+
+                    <option value="@(Gender.Female)">Female</option>
+                    <option value="@(Gender.Male)">Male</option>
+        </InputSelect>
+    </div>
+
+</div>
+
+<button type="submit" class=" btn btn-primary me-1"> Save Employee </button>
+    @if (Employee.Id >0)
+        {
+            <button type="button" class="btn btn-danger my-1" @onclick ="@HandleDelete">Delete</button>
+        }
+    <button class="btn btn-outline-primary my-1" @onclick="@NavigateToOverview"> Back</button>
+    </EditForm>
+
+}
+else{
+
+<div class =$"alert @StatusClass">
+    @Message
+</div>
+<button class="btn btn-outline-primary my-1" @onclick="@NavigateToOverview"> Back</button>
+
+}
+
+
+        
+
+      

@@ -1,0 +1,20 @@
+﻿@page "/employee/{EmployeeId}"
+
+
+<div class="card mb-3" style="width:400px; height:400px" >
+  <img class="card-img-top" src=@Employee.Image alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">@Employee.Name</h5>
+    <p class="card-text"> 
+       @* @if (@Employee.MaritalStatus == Model.Gender.Female)
+            {
+               <p> Hello  Mrs  @Employee.EmployeeName , How is @Employee.Country.Name </p>
+            }else{
+                <p> Hello  Mr  @Employee.EmployeeName , How is @Employee.Country.Name </p>
+            }*@
+            @Employee.Email
+
+           </p>
+        <p class="card-text"><small class="text-muted">@Employee.CreatedDate.ToShortDateString()</small></p>
+  </div>
+</div>
